@@ -27,34 +27,38 @@ export default function Table({ setItem, handleDelete }) {
   return (
     <div>
       <table>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Middle Name</th>
-          <th>Born</th>
-          <th>Action</th>
-        </tr>
-        {items?.map((todo, i) => {
-          const { first, last, middle, born } = todo?.data;
-          return (
-            <tr key={todo.id}>
-              <td>{first}</td>
-              <td>{last}</td>
-              <td>{middle}</td>
-              <td>{born}</td>
-              <td>
-                <div className="action_btn">
-                  <button
-                    onClick={() => setItem({ ...todo?.data, id: todo.id })}
-                  >
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(todo.id)}>Delete</button>
-                </div>
-              </td>
-            </tr>
-          );
-        })}
+        <tbody>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>Born</th>
+            <th>Action</th>
+          </tr>
+          {items?.map((todo, i) => {
+            const { first, last, middle, born } = todo?.data;
+            return (
+              <tr key={todo.id}>
+                <td>{first}</td>
+                <td>{last}</td>
+                <td>{middle}</td>
+                <td>{born}</td>
+                <td>
+                  <div className="action_btn">
+                    <button
+                      onClick={() => setItem({ ...todo?.data, id: todo.id })}
+                    >
+                      Edit
+                    </button>
+                    <button onClick={() => handleDelete(todo.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
