@@ -13,7 +13,7 @@ export default function Table({ setItem, handleDelete }) {
 
   /* function to get all item from firestore in realtime */
   useEffect(() => {
-    const taskColRef = query(collection(db, "users"));
+    const taskColRef = query(collection(db, "users"), orderBy("first", "asc"));
     onSnapshot(taskColRef, (snapshot) => {
       setItems(
         snapshot.docs.map((doc) => ({
