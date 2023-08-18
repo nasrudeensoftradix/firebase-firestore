@@ -43,3 +43,49 @@ input {
 .todo-content {
   margin-top: 2rem;
 }
+
+.add_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  width: 600px;
+  margin: auto;
+}
+.add_container div {
+  flex: auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.action_btn {
+  display: flex;
+  gap: 10px;
+}
+.action_btn button {
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: rgb(45, 146, 45);
+}
+.action_btn button:nth-child(2) {
+  background: red;
+}
