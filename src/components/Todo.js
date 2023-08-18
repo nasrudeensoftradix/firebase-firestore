@@ -11,7 +11,7 @@ import { db } from "../firebase";
 
 const Todo = () => {
   //States
-  const [todo, setTodo] = useState({
+  const [todo, setItem] = useState({
     first: "",
     middle: "",
     last: "",
@@ -24,11 +24,11 @@ const Todo = () => {
   //onchange handler
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setTodo((prev) => ({ ...prev, [name]: value }));
+    setItem((prev) => ({ ...prev, [name]: value }));
   };
 
   //Add item
-  const addTodo = async (e) => {
+  const addItem = async (e) => {
     e.preventDefault();
     try {
       let docRef = "";
@@ -38,7 +38,7 @@ const Todo = () => {
       } else {
         docRef = await addDoc(collection(db, "users"), todo);
       }
-      setTodo({
+      setItem({
         first: "",
         middle: "",
         last: "",
@@ -62,9 +62,14 @@ const Todo = () => {
   return (
     <section className="todo-container">
       <div className="todo">
-        <h1 className="header">Firestor Todo-App</h1>
+        <h1 className="header">
+          <span>
+            <img src="https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png" />
+          </span>
+          Firestore Crud App
+        </h1>
 
-        <form onSubmit={addTodo}>
+        <form onSubmit={addItem}>
           <div className="add_container">
             <div>
               <label>First Name</label>
@@ -100,7 +105,7 @@ const Todo = () => {
               />
             </div>
             <div>
-              <label>Middle Name</label>
+              <label>DOB</label>
               <input
                 type="date"
                 placeholder="What do you have to do today?"
@@ -110,16 +115,16 @@ const Todo = () => {
                 onChange={onChangeHandler}
               />
             </div>
-            <div className="btn-container">
-              <button type="submit" className="btn">
-                {todo?.id ? "Update" : "Submit"}
-              </button>
-            </div>
+          </div>
+          <div className="btn-container">
+            <button type="submit" className="btn">
+              {todo?.id ? "Update" : "Submit"}
+            </button>
           </div>
         </form>
 
         <div className="todo-content">
-          <Table setTodo={setTodo} handleDelete={handleDelete} />
+          <Table setItem={setItem} handleDelete={handleDelete} />
         </div>
       </div>
     </section>

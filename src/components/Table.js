@@ -8,14 +8,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-export default function Table({ setTodo, handleDelete }) {
-  const [todos, setTodos] = useState([]);
+export default function Table({ setItem, handleDelete }) {
+  const [items, setItems] = useState([]);
 
   /* function to get all item from firestore in realtime */
   useEffect(() => {
     const taskColRef = query(collection(db, "users"));
     onSnapshot(taskColRef, (snapshot) => {
-      setTodos(
+      setItems(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
@@ -34,7 +34,7 @@ export default function Table({ setTodo, handleDelete }) {
           <th>Born</th>
           <th>Action</th>
         </tr>
-        {todos?.map((todo, i) => {
+        {items?.map((todo, i) => {
           const { first, last, middle, born } = todo?.data;
           return (
             <tr key={todo.id}>
@@ -45,7 +45,7 @@ export default function Table({ setTodo, handleDelete }) {
               <td>
                 <div className="action_btn">
                   <button
-                    onClick={() => setTodo({ ...todo?.data, id: todo.id })}
+                    onClick={() => setItem({ ...todo?.data, id: todo.id })}
                   >
                     Edit
                   </button>
